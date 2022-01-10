@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken')
 const JWT_SECRET = "Thisisasecrettoken"
 const fetchuser = require('../middleware/fetchuser')
 const router = express.Router();
+
+
+//route1 - creating new user
 router.post('/createuser',[
     //if there are errors return bad request and the errors 
     body('name',"Enter a valid name").isLength({ min: 5 }),
@@ -51,7 +54,7 @@ router.post('/createuser',[
 })
 
 
-
+//route2 - logging in user
 router.post('/login',[
   //if there are errors return bad request and the errors 
   body('email',"Enter a valid email").isEmail(),
@@ -88,7 +91,7 @@ try{
     
   }
 })
-
+//route3 - getting user token
 router.post('/getuser',fetchuser,async (req,res)=>{
   try {
     userId = req.user.id
