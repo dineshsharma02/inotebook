@@ -25,7 +25,6 @@ function App() {
       </div>
     </Router>
       
-      <h1>This is iNotebook project</h1>
     </div>
     </NoteState>
   );
