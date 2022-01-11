@@ -9,9 +9,11 @@ import {
 } from "react-router-dom";
 import About from './components/About';
 import Home from './components/Home';
+import NoteState from './context/notes/NoteState';
 
 function App() {
   return (
+    <NoteState>
     <div className="App">
     <Router>
       <div>
@@ -25,6 +27,7 @@ function App() {
       
       <h1>This is iNotebook project</h1>
     </div>
+    </NoteState>
   );
 }
 
