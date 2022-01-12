@@ -7,11 +7,11 @@ const Noteitem = (props) => {
       
       
 
-      <div class="card">
-        <div class="card-header">{note.tag}</div>
-        <div class="card-body">
-          <h5 class="card-title">{note.title}</h5>
-          <p class="card-text">
+      <div className="card">
+        <div className="card-header">{note.tag.toUpperCase()} <span><i class="fas fa-edit mx-2"></i><i class="fas fa-trash mx-2"></i></span></div>
+        <div className="card-body">
+          <h5 className="card-title">{note.title}</h5>
+          <p className="card-text">
           {note.description} Lorem ipsum dolor sit, amet consectetur adipisicing elit. In cumque soluta blanditiis eligendi beatae hic ut quis unde officia facilis, totam impedit porro molestias eos sint eaque ad voluptas voluptatem.
           </p>
           

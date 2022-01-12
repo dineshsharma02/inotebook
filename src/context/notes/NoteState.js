@@ -5,7 +5,7 @@ import { useState } from 'react/cjs/react.development'
 const NoteState = (props)=>{
     const notesInitial = [
         {
-          "_id": "61dc574922751b4adac6b7a9",
+          "_id": "61dc574922dhfb751b4adac6b7a9",
           "user": "61d7529b69dd86885093c7ca",
           "title": "My title",
           "description": "please wake up",
@@ -14,7 +14,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "61dc574a22751b4adac6b7ad",
+          "_id": "61dc574a2275fghntr1b4adac6b7ad",
           "user": "61d7529b69dd86885093c7ca",
           "title": "My title",
           "description": "please wake up",
@@ -23,7 +23,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "61dc574a22751b4adac6b7ad",
+          "_id": "61dc574a2gfh2751b4adac6b7ad",
           "user": "61d7529b69dd86885093c7ca",
           "title": "My title",
           "description": "please wake up",
@@ -32,7 +32,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "61dc574a22751b4adac6b7ad",
+          "_id": "61dc576bf784a22751b4adac6b7ad",
           "user": "61d7529b69dd86885093c7ca",
           "title": "My title",
           "description": "please wake up",
@@ -41,7 +41,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "61dc574a22751b4adac6b7ad",
+          "_id": "61dc574a254t2751b4adac6b7ad",
           "user": "61d7529b69dd86885093c7ca",
           "title": "My title",
           "description": "please wake up",
@@ -50,7 +50,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "61dc574a22751b4adac6b7ad",
+          "_id": "61dc57674a22751b4adac6b7ad",
           "user": "61d7529b69dd86885093c7ca",
           "title": "My title",
           "description": "please wake up",
