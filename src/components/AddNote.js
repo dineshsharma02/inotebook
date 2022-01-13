@@ -23,7 +23,7 @@ const AddNote = () => {
             <form>
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
-                    <input type="text" className="form-control" id="title" name='title' onChange={onChange} aria-describedby="emailHelp" placeholder="Enter email"/>
+                    <input type="text" className="form-control" id="title" name='title' onChange={onChange} aria-describedby="emailHelp" placeholder="Enter note Title here!"/>
                         
                 </div>
                 <div className="form-group">
