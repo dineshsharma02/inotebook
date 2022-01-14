@@ -122,7 +122,9 @@ const Notes = () => {
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-primary" onClick={handleClick}>
+                <button type="button" className="btn btn-primary" onClick={handleClick}
+                disabled={(note.etitle.length<3 || note.edescription.length<5 || note.etag.length==0) && "true"}
+                >
                   
                   Update Note
                 </button>
