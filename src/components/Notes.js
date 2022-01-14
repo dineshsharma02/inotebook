@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useEffect ,useRef} from "react";
+import { useContext, useEffect ,useRef,useState} from "react";
 import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
 
@@ -7,18 +7,26 @@ import AddNote from "./AddNote";
 
 const Notes = () => {
   const context = useContext(noteContext);
-  const onChange=()=>{
-
-
-  }
-  const handleClick=()=>{
-
-  }
-  const updateNote=(note)=>{
-    ref.current.click()
-  }
   const ref = useRef(null)
-  const { notes, addNote, getNotes } = context;
+  const refClose = useRef(null)
+  
+  const { notes, addNote, getNotes ,editNote} = context;
+  const [note, setNote] = useState({id:"",etitle:"",edescription:"",etag:"general"})
+    const handleClick=(e)=>{
+      console.log("updating note",note);
+      editNote(note.id,note.etitle,note.edescription,note.etag)
+      refClose.current.click()
+
+    }
+    const onChange=(e)=>{
+        setNote({...note,[e.target.name]: e.target.value})
+    }
+  const updateNote=(currentNote)=>{
+    ref.current.click()
+    setNote({id:currentNote._id,etitle:currentNote.title,edescription:currentNote.description,etag:currentNote.tag})
+  }
+  
+  
   useEffect(() => {
     getNotes();
   }, []);
@@ -31,9 +39,10 @@ const Notes = () => {
         <button
           
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary d-none"
           data-toggle="modal"
           data-target="#exampleModal"
+          ref = {ref}
         >
           Launch demo modal
         </button>
@@ -43,6 +52,7 @@ const Notes = () => {
           tabIndex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
+          
           aria-hidden="true"
         >
           <div className="modal-dialog" role="document">
@@ -72,6 +82,7 @@ const Notes = () => {
                       onChange={onChange}
                       aria-describedby=""
                       placeholder="Enter note Title here!"
+                      value={note.etitle}
                     />
                   </div>
                   <div className="form-group">
@@ -82,6 +93,7 @@ const Notes = () => {
                       id="edescription"
                       name="edescription"
                       onChange={onChange}
+                      value={note.edescription}
                       placeholder="Enter note description here!"
                     />
                   </div>
@@ -92,6 +104,7 @@ const Notes = () => {
                       className="form-control"
                       id="etag"
                       name="etag"
+                      value={note.etag}
                       onChange={onChange}
                       placeholder="Enter note tag here!"
                     />
@@ -105,11 +118,13 @@ const Notes = () => {
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
+                  ref = {refClose}
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-primary">
-                  Save Note
+                <button type="button" className="btn btn-primary" onClick={handleClick}>
+                  
+                  Update Note
                 </button>
               </div>
             </div>
