@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [credential, setCredential] = useState({
-    email: "",
-    password: "",
-  });
+    let history = useNavigate();
+    const [credential, setCredential] = useState({
+        email: "",
+        password: "",
+    });
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -23,6 +26,15 @@ const Login = () => {
     });
     const json = await response.json();
     console.log(json);
+    if(json.success){
+        //redirect
+        localStorage.setItem("token",json.authtoken)
+        history('/')
+
+    }
+    else{
+        alert("Invalid creds")
+    }
   };
   const onChange = (e) => {
     setCredential({ ...credential, [e.target.name]: e.target.value });
