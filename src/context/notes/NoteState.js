@@ -59,6 +59,7 @@ const NoteState = (props) => {
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
+    props.showAlert("Note deleted","warning")
     setNotes(newNotes);
   };
   // Edit a note
@@ -87,6 +88,7 @@ const NoteState = (props) => {
         break;
       }
     }
+    props.showAlert("Note Updated","success")
     setNotes(newNotes);
   };
 

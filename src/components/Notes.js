@@ -5,7 +5,7 @@ import Noteitem from "./Noteitem";
 
 import AddNote from "./AddNote";
 
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(noteContext);
   const ref = useRef(null)
   const refClose = useRef(null)
@@ -32,7 +32,7 @@ const Notes = () => {
   }, []);
   return (
     <>
-      <AddNote />
+      <AddNote showAlert={props.showAlert} />
 
       <div className="row m-3">
         <h2>Your Notes</h2>
@@ -133,7 +133,7 @@ const Notes = () => {
           </div>
         </div>
         {notes.map((note) => {
-          return <Noteitem key={note._id} note={note} updateNote={updateNote} />;
+          return <Noteitem key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert} />;
         })}
       </div>
     </>
