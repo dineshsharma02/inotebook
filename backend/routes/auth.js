@@ -16,6 +16,7 @@ router.post('/createuser',[
     body('password',"Enter a valid password with length more than 5").isLength({ min: 5 }),
 ],async (req,res)=>{
   //returning the array of the errors
+    let success = false
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -25,7 +26,7 @@ router.post('/createuser',[
     let user = await User.findOne({email:req.body.email});
   try{
     if (user){
-      return res.status(400).json({"error":"the user already exists with this email address."})
+      return res.status(400).json({"error":"the user already exists with this email address.",success})
     }
     const salt = await bcrypt.genSalt(10);
     const secPass = await bcrypt.hash(req.body.password,salt)
@@ -41,9 +42,10 @@ router.post('/createuser',[
           id:user.id
         }
       }
+      success = true
       const authtoken = jwt.sign(data,JWT_SECRET)
 
-      res.json({authtoken})
+      res.json({authtoken,success})
       // .then(user => res.json(user))
     }
     catch(error){
@@ -64,14 +66,14 @@ router.post('/login',[
   let success = false
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({ success,errors: errors.array() });
   }
   const {email,password} = req.body;
   //checking if the user with email already exists
 try{
   let user = await User.findOne({email:email});
   if (!user){
-    return res.status(400).json({"error":"Please enter valid credentials"})
+    return res.status(400).json({success,"error":"Please enter valid credentials"})
   }
   const passwordComapare = await bcrypt.compare(password,user.password);
   if (!passwordComapare){
