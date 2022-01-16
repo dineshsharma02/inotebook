@@ -1,13 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
 import {
     Link, useLocation
   } from "react-router-dom";
-const Navbar = () => {
+const Navbar = (props) => {
+    let history = useNavigate();
     let location = useLocation();
     useEffect(() => {
         console.log(location.pathname)
         
     }, [location])
+    const handleLogout=()=>{
+        localStorage.removeItem('token')
+        history('/login')
+        props.showAlert("Logged out","success")
+
+    }
     return (
         
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,8 +34,11 @@ const Navbar = () => {
                         </li>
                       
                     </ul>
-                    <Link to="/login" className="btn btn-primary mx-1">Login</Link>
-                    <Link to="/signup" className="btn btn-primary" >SignUp</Link>
+                   {!localStorage.getItem('token')?
+                   <><Link to="/login" className="btn btn-primary mx-1">Login</Link>
+                   <Link to="/signup" className="btn btn-primary" >SignUp</Link></>:
+                   <><button className="btn btn-primary" onClick={handleLogout}>Logout</button></>
+                    }
                 </div>
             </div>
         </nav>

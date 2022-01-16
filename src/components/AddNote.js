@@ -24,8 +24,9 @@ const AddNote = (props) => {
   };
   return (
     <>
+      <br/>
       <h2>Add your notes here</h2>
-      <div className="container my-3">
+      <div className="container my-3 ">
         <form>
           <div className="form-group">
             <label htmlFor="title">Title</label>
@@ -67,12 +68,12 @@ const AddNote = (props) => {
               required
             />
           </div>
-
+          <br/>
           <button
             type="submit"
             className="btn btn-primary"
             onClick={handleClick}
-            disabled={(note.title.length<3 || note.description.length<5 || note.tag.length==0) && "true"}
+            disabled={(note.title.length<3 || note.description.length<5 || note.tag.length===0) && "true"}
           >
             Submit
           </button>

@@ -11,7 +11,7 @@ const Noteitem = (props) => {
       
 
       <div className="card">
-        <div className="card-header">{note.tag.toUpperCase()} <span>
+        <div className="card-header bg-secondary">{note.tag.toUpperCase()} <span>
           <i className="fas fa-edit mx-2" onClick={()=>{updateNote(note)}}></i>
           <i className="fas fa-trash mx-2" onClick={()=>{deleteNote(note._id)}}></i></span></div>
         <div className="card-body">

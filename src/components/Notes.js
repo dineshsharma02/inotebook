@@ -2,15 +2,17 @@ import React from "react";
 import { useContext, useEffect ,useRef,useState} from "react";
 import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
+import { useNavigate } from "react-router-dom";
 
 import AddNote from "./AddNote";
 
 const Notes = (props) => {
   const context = useContext(noteContext);
+  const history = useNavigate();
   const ref = useRef(null)
   const refClose = useRef(null)
   
-  const { notes, addNote, getNotes ,editNote} = context;
+  const { notes, getNotes ,editNote} = context;
   const [note, setNote] = useState({id:"",etitle:"",edescription:"",etag:"general"})
     const handleClick=(e)=>{
       console.log("updating note",note);
@@ -28,11 +30,17 @@ const Notes = (props) => {
   
   
   useEffect(() => {
-    getNotes();
-  }, []);
+    if(localStorage.getItem('token')){
+      getNotes();
+    }
+    else{
+      history('/login')
+    }
+  },);
   return (
     <>
       <AddNote showAlert={props.showAlert} />
+      <hr/>
 
       <div className="row m-3">
         <h2>Your Notes</h2>
@@ -123,7 +131,7 @@ const Notes = (props) => {
                   Close
                 </button>
                 <button type="button" className="btn btn-primary" onClick={handleClick}
-                disabled={(note.etitle.length<3 || note.edescription.length<5 || note.etag.length==0) && "true"}
+                disabled={(note.etitle.length<3 || note.edescription.length<5 || note.etag.length===0) && "true"}
                 >
                   
                   Update Note

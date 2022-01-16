@@ -1,5 +1,5 @@
 import NoteContext from "./noteContext";
-import { useContext, useState } from "react";
+import {  useState } from "react";
 
 const NoteState = (props) => {
   const notesInitial = []
@@ -13,7 +13,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFkNzUyOWI2OWRkODY4ODUwOTNjN2NhIn0sImlhdCI6MTY0MTU3MTU0M30.zqrEZ6nbXvoFUqkyU3tdxSqUoMo4tnvnbNg8bHh0-Mg",
+          localStorage.getItem('token'),
       },
     });
     const json = await response.json();
@@ -31,7 +31,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFkNzUyOWI2OWRkODY4ODUwOTNjN2NhIn0sImlhdCI6MTY0MTU3MTU0M30.zqrEZ6nbXvoFUqkyU3tdxSqUoMo4tnvnbNg8bHh0-Mg",
+          localStorage.getItem('token'),
       },
 
       body: JSON.stringify({ title, description, tag }), // body data type must match "Content-Type" header
@@ -52,10 +52,12 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFkNzUyOWI2OWRkODY4ODUwOTNjN2NhIn0sImlhdCI6MTY0MTU3MTU0M30.zqrEZ6nbXvoFUqkyU3tdxSqUoMo4tnvnbNg8bHh0-Mg",
+          localStorage.getItem('token'),
       },
 
     });
+    const json = await response.json();
+    console.log(json);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
@@ -71,13 +73,15 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFkNzUyOWI2OWRkODY4ODUwOTNjN2NhIn0sImlhdCI6MTY0MTU3MTU0M30.zqrEZ6nbXvoFUqkyU3tdxSqUoMo4tnvnbNg8bHh0-Mg",
+          localStorage.getItem('token'),
       },
-
+      
       body: JSON.stringify({ title, description, tag }), // body data type must match "Content-Type" header
     });
 
-    // const json = await response.json();
+
+    const json = await response.json();
+    console.log(json);
     let newNotes = JSON.parse(JSON.stringify(notes))
     for (let index = 0; index < notes.length; index++) {
       const element = newNotes[index];

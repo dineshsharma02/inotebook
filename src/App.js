@@ -1,7 +1,7 @@
 
 import './App.css';
 import Navbar from './components/Navbar';
-import React,{useContext,useState} from "react";
+import React,{useState} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,7 +19,6 @@ function App() {
   // const context = useContext(alertContext)
   // const alert = context
 
-  const [mode, setmode] = useState("light")
   const [alert, setAlert] = useState(null)
 
   const showAlert = (message,type) =>{
@@ -39,7 +38,7 @@ function App() {
     <div className="App">
     <Router>
       <div>
-      <Navbar/>
+      <Navbar showAlert={showAlert}/>
       <Alert alert={alert}/>
         <Routes>
           <Route exact path="/about" element={<About showAlert={showAlert}/>}></Route>
